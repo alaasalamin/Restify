@@ -17,6 +17,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/restaurants/{restaurant}/save-layout', [RestaurantController::class, 'saveLayout'])
+        ->name('restaurants.saveLayout');
     Route::get('/restaurants/{restaurant}/editor', [RestaurantController::class, 'editor'])
         ->name('restaurants.editor');
     Route::resource('restaurants', RestaurantController::class);

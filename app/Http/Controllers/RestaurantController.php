@@ -103,4 +103,20 @@ class RestaurantController extends Controller
         return redirect()->route('restaurants.index')
             ->with('success', 'Restaurant deleted successfully!');
     }
+
+    public function saveLayout(Request $request, Restaurant $restaurant)
+    {
+        $request->validate([
+            'map_json' => 'required|json',
+        ]);
+
+        // Optional: ensure only owner can save
+        $this->authorize('update', $restaurant);
+
+        $restaurant->map_json = $request->map_json;
+        $restaurant->save();
+
+        return back();
+    }
+
 }
