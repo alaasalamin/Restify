@@ -6,9 +6,11 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class RestaurantController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a list of restaurants owned by the logged-in user
      */
@@ -18,6 +20,15 @@ class RestaurantController extends Controller
 
         return Inertia::render('Restaurants/Index', [
             'restaurants' => $restaurants,
+        ]);
+    }
+
+    public function editor(Restaurant $restaurant)
+    {
+        $this->authorize('update', $restaurant);
+
+        return Inertia::render('Restaurants/Editor', [
+            'restaurant' => $restaurant,
         ]);
     }
 

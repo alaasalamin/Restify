@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
+use App\Models\Restaurant;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,13 +17,20 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/restaurants/{restaurant}/editor', [RestaurantController::class, 'editor'])
+        ->name('restaurants.editor');
     Route::resource('restaurants', RestaurantController::class);
 });
 
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $restaurants = Restaurant::where('user_id', auth()->id())->get();
+
+    return Inertia::render('Dashboard', [
+        'restaurants' => $restaurants,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
