@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('restaurants', RestaurantController::class);
 });
 
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
