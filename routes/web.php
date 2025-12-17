@@ -17,6 +17,11 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/restaurants/{restaurant}', function (Restaurant $restaurant) {
+        return Inertia::render('Restaurants/Show', [
+            'restaurant' => $restaurant
+        ]);
+    })->name('restaurants.show');
     Route::post('/restaurants/{restaurant}/save-layout', [RestaurantController::class, 'saveLayout'])
         ->name('restaurants.saveLayout');
     Route::get('/restaurants/{restaurant}/editor', [RestaurantController::class, 'editor'])

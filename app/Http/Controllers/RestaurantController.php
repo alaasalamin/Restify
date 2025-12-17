@@ -23,6 +23,14 @@ class RestaurantController extends Controller
         ]);
     }
 
+    public function show(Restaurant $restaurant)
+    {
+        return Inertia::render('Restaurants/Show', [
+            'restaurant' => $restaurant
+        ]);
+    }
+
+
     public function editor(Restaurant $restaurant)
     {
         $this->authorize('update', $restaurant);
