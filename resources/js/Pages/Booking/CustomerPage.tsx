@@ -121,7 +121,7 @@ export default function CustomerPage({ date, shift, tables, tableLabels, custome
 
                 <BookingDescription
                     value={comment}
-                    nChange={setComment}
+                    onChange={setComment}
                 />
             </div>
 
