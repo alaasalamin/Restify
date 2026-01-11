@@ -64,10 +64,26 @@ export default function Header() {
                             </button>
 
                             {menuOpen && (
-                                <div className="absolute right-0 mt-2 bg-white border border-gray-200 shadow-lg rounded-lg w-40 py-2 z-50">
+                                <div
+                                    className="text-center absolute right-0 mt-2 bg-white border border-gray-200 shadow-lg rounded-lg w-48 py-2 z-50">
+                                    <a href="/customer/profile" className="block px-4 py-2 text-sm hover:bg-gray-100">
+                                        My Profile
+                                    </a>
+
+                                    <a href="/customer/bookings" className="block px-4 py-2 text-sm hover:bg-gray-100">
+                                        My Bookings
+                                    </a>
+
+                                    <a href="/customer/invoices" className="block px-4 py-2 text-sm hover:bg-gray-100">
+                                        My Invoices
+                                    </a>
+
+
+                                    <div className="border-t my-2"/>
+
                                     <button
                                         onClick={handleLogout}
-                                        className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition"
+                                        className="text-center w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition text-red-600"
                                     >
                                         Logout
                                     </button>
@@ -75,6 +91,7 @@ export default function Header() {
                             )}
                         </div>
                     )}
+
                 </nav>
 
                 {/* MOBILE MENU BUTTON */}

@@ -14,6 +14,8 @@ class Booking extends Model
         'status',
         'table_label',
         'comment',
+        'external_invoice_id',
+        'invoice_status',
     ];
 
     protected $casts = [

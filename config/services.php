@@ -14,6 +14,11 @@ return [
     |
     */
 
+    'rsw' => [
+        'url' => env('RSW_URL', 'http://127.0.0.1:8000'),
+        'api_key' => env('RSW_API_KEY'),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],

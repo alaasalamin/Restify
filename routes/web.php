@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Customer\CustomerProfileController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
@@ -60,8 +61,14 @@ Route::post('/customer/login', [CustomerAuthController::class, 'login']);
 Route::post('/customer/logout', [CustomerAuthController::class, 'logout']);
 
 
+Route::middleware(['web', 'customer.auth'])
+    ->prefix('customer')
+    ->group(function () {
 
-
+        Route::get('/profile', [CustomerProfileController::class, 'profile']);
+        Route::get('/bookings', [CustomerProfileController::class, 'bookings']);
+        Route::get('/invoices', [CustomerProfileController::class, 'invoices']);
+    });
 
 
 Route::get("/booking/customer", function (Request $request) {
